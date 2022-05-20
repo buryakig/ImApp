@@ -19,8 +19,9 @@ include_directories(ImApp/submodules/src/stb)
 include_directories(ImApp/src/)
 
 add_subdirectory(imapp ${CMAKE_CURRENT_BINARY_DIR}/ImApp)
-add_subdirectory(sandbox ${CMAKE_CURRENT_BINARY_DIR}/Sandbox)
+if(NOT EXTERNAL)
+	add_subdirectory(sandbox ${CMAKE_CURRENT_BINARY_DIR}/Sandbox)
+	target_link_libraries(Sandbox PRIVATE ImApp)
 
-target_link_libraries(Sandbox PRIVATE ImApp)
-
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Sandbox)
+	set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Sandbox)
+endif()
