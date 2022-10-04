@@ -9,7 +9,7 @@ namespace ImApp
 	{
 	public:
 		static bool IsKeyDown(GLuint keyCode);
-		static bool IsMouseBttonDown(GLuint mButtonCode);
+		static bool IsMouseButtonDown(GLuint mButtonCode);
 		static glm::vec2 GetMousePos();
 		static void SetCursorMode(GLuint cursMode);
 	};

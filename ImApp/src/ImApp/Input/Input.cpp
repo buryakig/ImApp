@@ -10,7 +10,7 @@ namespace ImApp
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool Input::IsMouseBttonDown(GLuint mButtonCode)
+	bool Input::IsMouseButtonDown(GLuint mButtonCode)
 	{
 		GLFWwindow* windowHandle = Application::GetInstance().GetWindowHandle();
 		int state = glfwGetMouseButton(windowHandle, (int)mButtonCode);
