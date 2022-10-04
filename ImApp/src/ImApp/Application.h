@@ -29,7 +29,8 @@ namespace ImApp {
 
 		void Run();
 		void SetMenubarCallback(const std::function<void()>& menubarCallback) { m_MenubarCallback = menubarCallback; }
-		
+		GLFWwindow* GetWindowHandle() const { return m_WindowHandle; }
+
 		template<typename T>
 		void PushLayer()
 		{
@@ -38,13 +39,16 @@ namespace ImApp {
 		}
 
 		void PushLayer(const std::shared_ptr<Layer>& layer) { m_LayerStack.emplace_back(layer); layer->OnAttach(); }
-
 		void Close();
+
+		static Application& GetInstance() { return *Instance; }
 
 	private:
 		void Init();
 		void Shutdown();
 	private:
+		static Application* Instance;
+
 		ApplicationSpecification m_Specification;
 		GLFWwindow* m_WindowHandle = nullptr;
 		bool m_Running = false;

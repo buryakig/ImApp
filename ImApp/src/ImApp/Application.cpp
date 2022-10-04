@@ -39,6 +39,9 @@ namespace ImApp {
 		: m_Specification(specification)
 	{
 		Init();
+
+		if(!Instance)
+			Instance = this;
 	}
 
 	Application::~Application()
@@ -241,4 +244,6 @@ namespace ImApp {
 	{
 		m_Running = false;
 	}
+
+	Application* Application::Instance = nullptr;
 }
