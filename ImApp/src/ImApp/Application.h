@@ -12,7 +12,8 @@
 
 struct GLFWwindow;
 
-namespace ImApp {
+namespace ImApp 
+{
 
 	struct ApplicationSpecification
 	{
@@ -30,6 +31,7 @@ namespace ImApp {
 		void Run();
 		void SetMenubarCallback(const std::function<void()>& menubarCallback) { m_MenubarCallback = menubarCallback; }
 		GLFWwindow* GetWindowHandle() const { return m_WindowHandle; }
+		float GetTime() const { return glfwGetTime(); }
 
 		template<typename T>
 		void PushLayer()
@@ -52,6 +54,10 @@ namespace ImApp {
 		ApplicationSpecification m_Specification;
 		GLFWwindow* m_WindowHandle = nullptr;
 		bool m_Running = false;
+
+		float deltaTime = 0.0f;
+		float fixedDeltaTime = 0.0f;
+		float prevFrameTime = 0.0f;
 
 		std::vector<std::shared_ptr<Layer>> m_LayerStack;
 		std::function<void()> m_MenubarCallback;

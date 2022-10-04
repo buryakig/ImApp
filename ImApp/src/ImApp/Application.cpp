@@ -153,12 +153,13 @@ namespace ImApp {
 			// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
 			glfwPollEvents();
 
+			for (auto& layer : m_LayerStack)
+				layer->OnUpdate(deltaTime);
+
 			// Start the Dear ImGui frame
 			ImGui_ImplOpenGL3_NewFrame();
 			ImGui_ImplGlfw_NewFrame();
 			ImGui::NewFrame();
-
-
 
 			{
 				static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
@@ -212,9 +213,6 @@ namespace ImApp {
 				ImGui::End();				
 			}
 
-
-
-
 			// Rendering
 			ImGui::Render();
 			int display_w, display_h;
@@ -236,8 +234,11 @@ namespace ImApp {
 			}
 
 			glfwSwapBuffers(m_WindowHandle);
-		}
 
+			float time = GetTime();
+			deltaTime = time - prevFrameTime;
+			prevFrameTime = time;
+		}
 	}
 
 	void Application::Close()
