@@ -31,7 +31,7 @@ namespace ImApp
 		void Run();
 		void SetMenubarCallback(const std::function<void()>& menubarCallback) { m_MenubarCallback = menubarCallback; }
 		GLFWwindow* GetWindowHandle() const { return m_WindowHandle; }
-		float GetTime() const { return glfwGetTime(); }
+		float GetTime() const;
 
 		template<typename T>
 		void PushLayer()

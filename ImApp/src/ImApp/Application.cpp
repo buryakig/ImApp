@@ -132,6 +132,11 @@ namespace ImApp {
 		g_ApplicationRunning = false;
 	}
 
+	float Application::GetTime() const
+	{
+		return glfwGetTime();
+	}
+
 	void Application::Run()
 	{
 		m_Running = true;
